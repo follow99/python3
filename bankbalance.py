@@ -4,7 +4,7 @@ __author__ = 'd15123547'
 
 def simple_interest(principle, rate, periods):
     ''' this method  unable to avoid the Interest in an Unpredictable level eg.0.05% AIB even lower therefor enforce  user to enter with
-    ¡®%¡¯ seems the only solution
+    '%' seems the only solution
     if rate >= 1:
         rate = rate/100
     else:
@@ -16,7 +16,7 @@ def simple_interest(principle, rate, periods):
 
 def simple_interest2(principle,rate,periods,numberOfTime):
     yield_ld = periods*numberOfTime
-    balance = principle
+    #balance = principle
     '''
     if rate >= 1:
         rate = rate/100
@@ -26,9 +26,11 @@ def simple_interest2(principle,rate,periods,numberOfTime):
     total = principle*(1+rate/numberOfTime)**(numberOfTime*periods)
     #Any ideals to format that rate without too much 0000? fixed^-^
     print(format(principle,',') ,'at','{:.2%}'.format(rate),'compounded quarterly for' ,periods, 'years yields', '{:.2f}'.format(total))
-    for i in range(0,yield_ld):
-        balance = balance+balance*rate/numberOfTime
-        print("Quarter:",'{0:2d}'.format(i+1),"Balance:",'{:.2f}'.format(balance))
+    for i in range(1,yield_ld):
+        balance=principle*(1+rate/numberOfTime)**i
+        #balance = balance+balance*rate/numberOfTime
+        print("Quarter:",'{0:2d}'.format(i),"Balance:",'{:.2f}'.format(balance))
+
 
     return ""# if return == None will print None to void this return ""
 
@@ -40,9 +42,10 @@ def main():
     if menu==1:
         try:
             principle = int(input('How much you wish to save?'))
-            rate = input('Interest/year(entered with %)?')
+            #rate = input('Interest/year(entered with %)?')
             while "%" not in rate:
-                rate=input('Interest/Period(entered with %)?')
+                rate = input('Interest/year(entered with %)?')
+                #rate=input('Interest/Period(entered with %)?')
 
             else:
                  rate=float(rate.replace("%",""))/100
